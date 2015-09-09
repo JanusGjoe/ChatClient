@@ -77,7 +77,7 @@ public class ChatClientGUI extends javax.swing.JFrame
         newConnectionPort.setMargin(new java.awt.Insets(2, 10, 2, 10));
         newConnectionPort.setPreferredSize(new java.awt.Dimension(300, 40));
 
-        newConnectionIP.setText("localhost");
+        newConnectionIP.setText("JKGVM.cloudapp.net");
         newConnectionIP.setMargin(new java.awt.Insets(2, 10, 2, 10));
         newConnectionIP.setPreferredSize(new java.awt.Dimension(300, 40));
 
