@@ -131,6 +131,7 @@ public class Controller implements java.util.Observer
         Arrays.sort(tokens);
         
         DefaultListModel userlist = new DefaultListModel();
+        userlist.addElement("(" + tokens.length + " users)");
         for(int i = 0; i < tokens.length; i++)
         {
             userlist.addElement(tokens[i]);

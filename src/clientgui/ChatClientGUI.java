@@ -273,11 +273,17 @@ public class ChatClientGUI extends javax.swing.JFrame
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane2.setPreferredSize(new java.awt.Dimension(200, 350));
 
+        jListUsers.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Person1", "Person2", "Anonymous1", "Anonymous2" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jListUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListUsers.setPreferredSize(new java.awt.Dimension(150, 300));
         jListUsers.setVisibleRowCount(5);
         jScrollPane2.setViewportView(jListUsers);
 
-        jToggleButtonPrivateMessage.setText("Private Message");
+        jToggleButtonPrivateMessage.setText("<html>Send Private Message</html");
         jToggleButtonPrivateMessage.setToolTipText("Select receivers from the list of users");
         jToggleButtonPrivateMessage.setMaximumSize(new java.awt.Dimension(200, 40));
         jToggleButtonPrivateMessage.setMinimumSize(new java.awt.Dimension(200, 40));
@@ -292,13 +298,13 @@ public class ChatClientGUI extends javax.swing.JFrame
         jSeparator1.setPreferredSize(new java.awt.Dimension(620, 10));
 
         jLabelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelInfo1.setText("<html>Port:<br>Ip-address:</html>");
         jLabelInfo1.setMaximumSize(new java.awt.Dimension(10000, 10000));
         jLabelInfo1.setMinimumSize(new java.awt.Dimension(180, 40));
         jLabelInfo1.setPreferredSize(new java.awt.Dimension(180, 40));
 
+        jLabelInfo2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelInfo2.setText("<html>User:<br>Time:</html>");
+        jLabelInfo2.setText("Time: 88:88");
         jLabelInfo2.setPreferredSize(new java.awt.Dimension(200, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -506,6 +512,8 @@ public class ChatClientGUI extends javax.swing.JFrame
             String msg = text.trim();
             jTextFieldMessage.setText("");
             
+            msg = msg.replaceAll("#", "");
+            
             // Test if message is empty. If not empty, sends message
             if (!msg.equalsIgnoreCase(""))
             {
@@ -528,7 +536,7 @@ public class ChatClientGUI extends javax.swing.JFrame
         String username = newConnectionUsername.getText();
         
         // Test if written username contains any of the symbols, used in the Protocol-Strings
-        if(username.contains("*") || username.contains("<") || username.contains(">") || username.contains(","))
+        if(username.contains("*") || username.contains("<") || username.contains(">") || username.contains(",") || username.contains("#"))
         {
             newConnectionInfoMessage.setText("<html>Username must not contain any of the following symbols:   #   *   >   ,</html>");
             return;
