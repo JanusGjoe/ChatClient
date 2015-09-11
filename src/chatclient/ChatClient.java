@@ -44,6 +44,9 @@ public class ChatClient extends java.util.Observable implements Runnable
         input.close();
         output.close();
         socket.close();
+        String stopCommand = "STOPCLIENTCON#STOPCLIENTCON";
+        setChanged();
+        notifyObservers(stopCommand);
     }
     
     // Thread that continuesly waits for messages from server to this client. When a message is received, it notifies listeners (Controller)

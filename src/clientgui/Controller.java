@@ -3,6 +3,7 @@ package clientgui;
 
 import chatclient.ChatClient;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
@@ -13,6 +14,7 @@ public class Controller implements java.util.Observer
 {
     ChatClientGUI gui;
     ChatClient client = new ChatClient();
+    private String[] userlist = new String[10];
     private String username;
     
     Controller(ChatClientGUI ecgui)
@@ -21,7 +23,7 @@ public class Controller implements java.util.Observer
         client.addObserver(this);
     }
     
-    // (Observer) Receieves the incoming message from EchoClient
+    // (Observer) Receieves the incoming message from ChatClient
     @Override
     public void update(Observable o, Object arg)
     {
@@ -29,8 +31,8 @@ public class Controller implements java.util.Observer
         handleMessage(text);
     }
     
-    // Tells EchoClient to connect to server with specified ip-address and port,
-    // and starts EchoClient-Thread that handles incoming messages
+    // Tells ChatClient to connect to server with specified ip-address and port,
+    // and starts ChatClient-Thread that handles incoming messages
     public boolean connect(String serverAddress, int port, String userName)
     {
         try
@@ -48,14 +50,20 @@ public class Controller implements java.util.Observer
         return true;
     }
     
-    // Tells EchoClient to disconnect from server
+    // Tells ChatClient to disconnect from server
     public void disconnect()
     {
         client.send("STOP#");
         gui.updateChat("--- Disconnected ---");
     }
     
-    // Tells EchoClient to send the specified message to server
+    private void closeConnection()
+    {
+        gui.disconnect();
+        gui.updateChat("--- Disconnected ---");
+    }
+    
+    // Tells ChatClient to send the specified message to server
     public void sendMessage(String msg, List<String> users)
     {
         String sendMSG;
@@ -75,7 +83,7 @@ public class Controller implements java.util.Observer
     }
     
     // Handles the incoming message depending on its command-type (USERLIST# or MSG#)
-    private void handleMessage(String data)
+    private synchronized void handleMessage(String data)
     {
         String splitter = "[#]";
         String[] tokens = data.split(splitter);
@@ -109,6 +117,8 @@ public class Controller implements java.util.Observer
                     }
                     updateChat(sender, msg);
                     break;
+                case "STOPCLIENTCON":
+                    closeConnection();
                 default:
                     break;
             }
@@ -123,7 +133,7 @@ public class Controller implements java.util.Observer
     }
     
     // Updates list of users in GUI (ChatClientGUI)
-    private void updateUserList(String users)
+    private synchronized void updateUserList(String users)
     {
         String splitter = "[,]";
         String[] tokens = users.split(splitter);

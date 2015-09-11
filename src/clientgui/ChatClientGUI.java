@@ -56,12 +56,12 @@ public class ChatClientGUI extends javax.swing.JFrame
         jButtonSendMessage = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaChat = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListUsers = new javax.swing.JList();
         jToggleButtonPrivateMessage = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelInfo1 = new javax.swing.JLabel();
         jLabelInfo2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListUsers = new javax.swing.JList();
 
         jDialogNewConnection.setAlwaysOnTop(true);
         jDialogNewConnection.setMinimumSize(new java.awt.Dimension(345, 399));
@@ -96,7 +96,7 @@ public class ChatClientGUI extends javax.swing.JFrame
             }
         });
 
-        newConnectionInfoMessage.setText("<html>Username \"Anonymous\" is NOT a very cool username...</html>");
+        newConnectionInfoMessage.setText("<html>Username \"Anonymous\" is NOT a cool username...</html>");
         newConnectionInfoMessage.setPreferredSize(new java.awt.Dimension(300, 40));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -161,7 +161,7 @@ public class ChatClientGUI extends javax.swing.JFrame
                 {null, null}
             },
             new String [] {
-                "User", "Message"
+                "", ""
             }
         ) {
             Class[] types = new Class [] {
@@ -187,7 +187,9 @@ public class ChatClientGUI extends javax.swing.JFrame
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("");
             jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("");
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -197,14 +199,14 @@ public class ChatClientGUI extends javax.swing.JFrame
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(462, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialogTestLayout = new javax.swing.GroupLayout(jDialogTest.getContentPane());
@@ -271,20 +273,6 @@ public class ChatClientGUI extends javax.swing.JFrame
         jTextAreaChat.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextAreaChat);
 
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(200, 350));
-
-        jListUsers.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Person1", "Person2", "Anonymous1", "Anonymous2" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jListUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListUsers.setPreferredSize(new java.awt.Dimension(150, 300));
-        jListUsers.setVisibleRowCount(5);
-        jScrollPane2.setViewportView(jListUsers);
-
-        jToggleButtonPrivateMessage.setText("<html>Click To Send A<br>Private Message</html");
         jToggleButtonPrivateMessage.setToolTipText("Select receivers from the list of users");
         jToggleButtonPrivateMessage.setMaximumSize(new java.awt.Dimension(200, 40));
         jToggleButtonPrivateMessage.setMinimumSize(new java.awt.Dimension(200, 40));
@@ -308,6 +296,15 @@ public class ChatClientGUI extends javax.swing.JFrame
         jLabelInfo2.setText("Time: 88:88");
         jLabelInfo2.setPreferredSize(new java.awt.Dimension(200, 40));
 
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(200, 340));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(200, 340));
+
+        jListUsers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListUsers.setPreferredSize(new java.awt.Dimension(150, 300));
+        jListUsers.setVisibleRowCount(5);
+        jScrollPane2.setViewportView(jListUsers);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -326,10 +323,10 @@ public class ChatClientGUI extends javax.swing.JFrame
                             .addComponent(jTextFieldMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButtonPrivateMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelInfo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonSendMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelInfo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jToggleButtonPrivateMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -344,8 +341,9 @@ public class ChatClientGUI extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jToggleButtonPrivateMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, 0))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,7 +383,7 @@ public class ChatClientGUI extends javax.swing.JFrame
             jListUsers.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             jListUsers.setSelectionForeground(Color.WHITE);
             jListUsers.setSelectionBackground(Color.LIGHT_GRAY);
-            jToggleButtonPrivateMessage.setText("Public Message");
+            jToggleButtonPrivateMessage.setText("<html>Send Public Message</html>");
             jToggleButtonPrivateMessage.setToolTipText("Click button to send message to all users");
         } else
         {
@@ -393,8 +391,8 @@ public class ChatClientGUI extends javax.swing.JFrame
             jListUsers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             jListUsers.setSelectionForeground(Color.BLACK);
             jListUsers.setSelectionBackground(Color.WHITE);
-            jToggleButtonPrivateMessage.setText("Private Message");
-            jToggleButtonPrivateMessage.setToolTipText("Click button and select private receivers from the list of users");
+            jToggleButtonPrivateMessage.setText("<html>Select Receivers</html>");
+            jToggleButtonPrivateMessage.setToolTipText("Click button and select private-message-receivers from the list of users");
         }
     }//GEN-LAST:event_jToggleButtonPrivateMessageActionPerformed
 
@@ -405,8 +403,9 @@ public class ChatClientGUI extends javax.swing.JFrame
     private void jButtonStartConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartConnectionActionPerformed
         if(online)
         {
-            // Disconnect - close connection to server
+            // Disconnect - Stop threads and close connection to server
             disconnect();
+            con.disconnect();
         } else
         {
             jDialogNewConnection.setVisible(true);
@@ -492,26 +491,13 @@ public class ChatClientGUI extends javax.swing.JFrame
     }
     
     // Uodates list of users by placing the specified DefaultListModel in jListUsers
-    public synchronized void updateUserList(String[] userlist)
+    public synchronized void updateUserList(String[] list)
     {
-        DefaultTableModel model = new DefaultTableModel()
+        DefaultListModel model = new DefaultListModel();
+        model.addElement("(Users: " + list.length + ")");
+        for (String user : list)
         {
-            @Override
-            public boolean isCellEditable(int row, int column)
-            {
-                return false;
-            }
-        };
-        
-        model.setColumnIdentifiers(new Object[] {"Rank", "Playername", "(OP)", "Games", "Points"});
-        for(PlayerInfo player : playerList)
-        {
-            String rank = player.getRankString();
-            String playerName = player.getPlayername();
-            String opponentPoints = "(" + player.getOpponentPoints() + ")";
-            String games = "" + player.getGames();
-            String points = "" + player.getPoints();
-            model.addRow(new Object[]{rank, playerName, opponentPoints, games, points});
+            model.addElement(user);
         }
         jListUsers.setModel(model);
     }
@@ -542,7 +528,9 @@ public class ChatClientGUI extends javax.swing.JFrame
                 if (jToggleButtonPrivateMessage.isSelected())
                 {
                     users = jListUsers.getSelectedValuesList();
+                    users.remove(0);
                 }
+                
                 con.sendMessage(msg, users);
             }
             
@@ -555,7 +543,7 @@ public class ChatClientGUI extends javax.swing.JFrame
     {
         String username = newConnectionUsername.getText();
         
-        // Test if written username contains any of the symbols, used in the Protocol-Strings
+        // Test if written username contains any of the symbols used in the Protocol-Strings or ChatClientGUI
         if(username.contains("*") || username.contains("<") || username.contains(">") || username.contains(",") || username.contains("#"))
         {
             newConnectionInfoMessage.setText("<html>Username must not contain any of the following symbols:   #   *   >   ,</html>");
@@ -575,8 +563,8 @@ public class ChatClientGUI extends javax.swing.JFrame
             jToggleButtonPrivateMessage.setSelected(false);
             jListUsers.setSelectionForeground(Color.BLACK);
             jListUsers.setSelectionBackground(Color.WHITE);
-            jToggleButtonPrivateMessage.setText("Private Message");
-            jToggleButtonPrivateMessage.setToolTipText("Click button and select private receivers from the list of users");
+            jToggleButtonPrivateMessage.setText("<html>Select Receivers</html>");
+            jToggleButtonPrivateMessage.setToolTipText("Click button and select private-message-receivers from the list of users");
             
             DefaultCaret caret = (DefaultCaret)jTextAreaChat.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -589,18 +577,17 @@ public class ChatClientGUI extends javax.swing.JFrame
             jDialogNewConnection.setVisible(false);
         } else
         {
-            newConnectionInfoMessage.setText("<html>Could not connect to chat...</html>");
+            newConnectionInfoMessage.setText("<html>Could not connect to chat!<br>Please Check IP-address and port...</html>");
         }
     }
     
     // Disconnect from server through Controller
-    private void disconnect()
+    public void disconnect()
     {
         ir.stopThread();
         clearUserList();
         online = false;
         jButtonStartConnection.setText("Start New Connection");
-        con.disconnect();
     }
     
     // ActionEvent for Enter-button -> Runs the sendMessage() method
@@ -612,39 +599,4 @@ public class ChatClientGUI extends javax.swing.JFrame
             sendMessage();
         }
     };
-    
-    // Trying to add a KeyEvent for Enter-key in jTextFieldMessage, but the AbstractAction above was shorter and faster
-//    public class SubmitButton implements ActionListener, KeyListener
-//    {
-//        JTextField nameInput;
-//        public SubmitButton(JTextField textfield)
-//        {
-//            nameInput = textfield;
-//        }
-//        @Override
-//        public void actionPerformed(ActionEvent submitClicked)
-//        {
-//            Component frame = new JFrame();
-//            JOptionPane.showMessageDialog(frame, "You've Submitted the name " + nameInput.getText());
-//        }
-//        @Override
-//        public void keyPressed(KeyEvent e)
-//        {
-//            if (e.getKeyCode() == KeyEvent.VK_ENTER)
-//            {
-//                sendMessage();
-//            }
-//
-//        }
-//        @Override
-//        public void keyTyped(KeyEvent e)
-//        {
-//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        }
-//        @Override
-//        public void keyReleased(KeyEvent e)
-//        {
-//            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        }
-//    }
 }
