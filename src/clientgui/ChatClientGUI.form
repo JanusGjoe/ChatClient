@@ -367,7 +367,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonStartConnection">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Start Connection"/>
+            <Property name="text" type="java.lang.String" value="Start New Connection"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 40]"/>
             </Property>
@@ -476,7 +476,7 @@
         </Container>
         <Component class="javax.swing.JToggleButton" name="jToggleButtonPrivateMessage">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Send Private Message&lt;/html"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Click To Send A&lt;br&gt;Private Message&lt;/html"/>
             <Property name="toolTipText" type="java.lang.String" value="Select receivers from the list of users"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 40]"/>

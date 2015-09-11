@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 
 public class Controller implements java.util.Observer
 {
@@ -130,12 +129,6 @@ public class Controller implements java.util.Observer
         String[] tokens = users.split(splitter);
         Arrays.sort(tokens);
         
-        DefaultListModel userlist = new DefaultListModel();
-        userlist.addElement("(" + tokens.length + " users)");
-        for(int i = 0; i < tokens.length; i++)
-        {
-            userlist.addElement(tokens[i]);
-        }
-        gui.updateUserList(userlist);
+        gui.updateUserList(tokens);
     }
 }

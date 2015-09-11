@@ -9,6 +9,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultCaret;
 
 public class ChatClientGUI extends javax.swing.JFrame
@@ -227,7 +228,7 @@ public class ChatClientGUI extends javax.swing.JFrame
         jPanel1.setMinimumSize(new java.awt.Dimension(660, 580));
         jPanel1.setPreferredSize(new java.awt.Dimension(660, 580));
 
-        jButtonStartConnection.setText("Start Connection");
+        jButtonStartConnection.setText("Start New Connection");
         jButtonStartConnection.setMaximumSize(new java.awt.Dimension(200, 40));
         jButtonStartConnection.setMinimumSize(new java.awt.Dimension(200, 40));
         jButtonStartConnection.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -283,7 +284,7 @@ public class ChatClientGUI extends javax.swing.JFrame
         jListUsers.setVisibleRowCount(5);
         jScrollPane2.setViewportView(jListUsers);
 
-        jToggleButtonPrivateMessage.setText("<html>Send Private Message</html");
+        jToggleButtonPrivateMessage.setText("<html>Click To Send A<br>Private Message</html");
         jToggleButtonPrivateMessage.setToolTipText("Select receivers from the list of users");
         jToggleButtonPrivateMessage.setMaximumSize(new java.awt.Dimension(200, 40));
         jToggleButtonPrivateMessage.setMinimumSize(new java.awt.Dimension(200, 40));
@@ -491,9 +492,28 @@ public class ChatClientGUI extends javax.swing.JFrame
     }
     
     // Uodates list of users by placing the specified DefaultListModel in jListUsers
-    public void updateUserList(DefaultListModel<String> userlist)
+    public synchronized void updateUserList(String[] userlist)
     {
-        jListUsers.setModel(userlist);
+        DefaultTableModel model = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
+        
+        model.setColumnIdentifiers(new Object[] {"Rank", "Playername", "(OP)", "Games", "Points"});
+        for(PlayerInfo player : playerList)
+        {
+            String rank = player.getRankString();
+            String playerName = player.getPlayername();
+            String opponentPoints = "(" + player.getOpponentPoints() + ")";
+            String games = "" + player.getGames();
+            String points = "" + player.getPoints();
+            model.addRow(new Object[]{rank, playerName, opponentPoints, games, points});
+        }
+        jListUsers.setModel(model);
     }
     
     // Clears/removes all names from jListUsers
@@ -579,7 +599,7 @@ public class ChatClientGUI extends javax.swing.JFrame
         ir.stopThread();
         clearUserList();
         online = false;
-        jButtonStartConnection.setText("Start Connection");
+        jButtonStartConnection.setText("Start New Connection");
         con.disconnect();
     }
     
