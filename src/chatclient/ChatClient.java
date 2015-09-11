@@ -38,15 +38,13 @@ public class ChatClient extends java.util.Observable implements Runnable
     }
     
     // Sends a STOP-message to server (ClientHandler) and closes input, output and socket
-    public void stop() throws IOException
+    public void stop()
     {
-        output.println(ProtocolStrings.STOP);
-        input.close();
-        output.close();
-        socket.close();
-        String stopCommand = "STOPCLIENTCON#STOPCLIENTCON";
-        setChanged();
-        notifyObservers(stopCommand);
+        try {
+            socket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     // Thread that continuesly waits for messages from server to this client. When a message is received, it notifies listeners (Controller)
@@ -56,7 +54,7 @@ public class ChatClient extends java.util.Observable implements Runnable
         continueClient = true;
         while (continueClient)
         {
-            String msg = "";
+            String msg;
             try
             {
                 msg = input.nextLine();
@@ -67,15 +65,12 @@ public class ChatClient extends java.util.Observable implements Runnable
             Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, "Received message: \"" + msg + "\"", "");
             setChanged();
             notifyObservers(msg);
-            if (msg.equals(ProtocolStrings.STOP))
-            {
-                continueClient = false;
-            }
         }
-        try {
-            stop();
-        } catch (IOException ex) {
-            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        stop();
+        
+        String stopCommand = "STOPCLIENTCON#STOPCLIENTCON";
+        setChanged();
+        notifyObservers(stopCommand);
     }
 }

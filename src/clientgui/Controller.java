@@ -3,7 +3,6 @@ package clientgui;
 
 import chatclient.ChatClient;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
@@ -54,13 +53,12 @@ public class Controller implements java.util.Observer
     public void disconnect()
     {
         client.send("STOP#");
-        gui.updateChat("--- Disconnected ---");
+        client.stop();
     }
     
     private void closeConnection()
     {
         gui.disconnect();
-        gui.updateChat("--- Disconnected ---");
     }
     
     // Tells ChatClient to send the specified message to server
@@ -118,6 +116,7 @@ public class Controller implements java.util.Observer
                     updateChat(sender, msg);
                     break;
                 case "STOPCLIENTCON":
+                    gui.updateChat("--- Disconnected ---");
                     closeConnection();
                 default:
                     break;

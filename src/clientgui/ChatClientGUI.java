@@ -9,7 +9,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultCaret;
 
 public class ChatClientGUI extends javax.swing.JFrame
@@ -404,7 +403,6 @@ public class ChatClientGUI extends javax.swing.JFrame
         if(online)
         {
             // Disconnect - Stop threads and close connection to server
-            disconnect();
             con.disconnect();
         } else
         {
@@ -528,7 +526,10 @@ public class ChatClientGUI extends javax.swing.JFrame
                 if (jToggleButtonPrivateMessage.isSelected())
                 {
                     users = jListUsers.getSelectedValuesList();
-                    users.remove(0);
+                    if(jListUsers.isSelectedIndex(0))
+                    {
+                        users.remove(0);
+                    }
                 }
                 
                 con.sendMessage(msg, users);
