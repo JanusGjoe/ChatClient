@@ -481,7 +481,7 @@ public class ChatClientGUI extends javax.swing.JFrame
     // End of variables declaration//GEN-END:variables
     
     // Updates chat by adding the specified text to the last line in jTextAreaChat
-    public void updateChat(String text)
+    public synchronized void updateChat(String text)
     {
         jTextAreaChat.setRows(jTextAreaChat.getRows() + 1);
         jTextAreaChat.append(text + "\n");

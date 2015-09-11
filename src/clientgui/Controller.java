@@ -125,7 +125,7 @@ public class Controller implements java.util.Observer
     }
     
     // Updates chat in GUI (ChatClientGUI)
-    private void updateChat(String sender, String msg)
+    private synchronized void updateChat(String sender, String msg)
     {
         String updateMessage = "<" + sender + "> " + msg;
         gui.updateChat(updateMessage);
